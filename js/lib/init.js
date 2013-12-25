@@ -1,9 +1,19 @@
-$('.scroller').on('mousewheel', function (event)
+$(window).on('mousewheel', function (event)
 {
-  var deltaY, timeStamp;
+  event.preventDefault();
+
+
+  var deltaY, timeStamp, result;
 
   deltaY = event.deltaY;
   timeStamp = event.timeStamp;
 
-  console.log(gatherData(timeStamp, deltaY));
+  // if console log/time here, the script will run slow!
+  result = gatherData(timeStamp, deltaY);
+
+  // if (result)
+  // {
+    // console.log(result)
+  // }
+
 });

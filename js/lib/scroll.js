@@ -1,6 +1,6 @@
 var gatherData = function (timeStamp, dl)
 {
-  var i, maxPause, dataPerAnalysis, result, direction;
+  var i, maxPause, dataPerAnalysis, results, direction;
 
   maxPause = 100;
   dataPerAnalysis = 12;
@@ -9,6 +9,9 @@ var gatherData = function (timeStamp, dl)
   if (gatherData.t0 === 0)
   {
     gatherData.t0 = timeStamp;
+
+    // temp
+    $('svg').empty();
   }
 
   // add data to storage
@@ -68,7 +71,7 @@ var gatherData = function (timeStamp, dl)
     gatherData.current = 0; // 1 = accel, -1 = retard
   }, maxPause);
 
-  // return event
+  // return event;
   return direction;
 
 }
@@ -115,13 +118,13 @@ var analyzeData = function (t, dl)
   DL = [];
   if (maxDli > minDli)
   {
-    T[0] = t.slice(-1, minDli + 1);
-    T[1] = t.slice(minDli, maxDli + 1);
-    T[2] = t.slice(maxDli);
+    T[0] = t.slice(0, minDli);
+    T[1] = t.slice(minDli + 1, maxDli);
+    T[2] = t.slice(maxDli + 1);
 
-    DL[0] = dl.slice(-1, minDli + 1);
-    DL[1] = dl.slice(minDli, maxDli + 1);
-    DL[2] = dl.slice(maxDli);
+    DL[0] = dl.slice(0, minDli);
+    DL[1] = dl.slice(minDli + 1, maxDli);
+    DL[2] = dl.slice(maxDli + 1);
   }
   else
   {
